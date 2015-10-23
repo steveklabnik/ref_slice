@@ -1,0 +1,4 @@
+[package]
+name = "ref_slice"
+version = "0.1.0"
+authors = ["Steve Klabnik <steve@steveklabnik.com>"]
