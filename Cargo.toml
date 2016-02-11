@@ -1,6 +1,6 @@
 [package]
 name = "ref_slice"
-version = "0.1.0"
+version = "1.0.0"
 authors = ["Steve Klabnik <steve@steveklabnik.com>"]
 description = "Turn a reference into a slice of length one."
 license = "Apache-2.0/MIT"
