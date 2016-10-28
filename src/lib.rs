@@ -1,17 +1,19 @@
+#![no_std]
+
 pub use self::ref_slice_mut as mut_ref_slice;
 pub use self::opt_slice_mut as mut_opt_slice;
 
 /// Converts a reference to A into a slice of length 1 (without copying).
 pub fn ref_slice<A>(s: &A) -> &[A] {
     unsafe {
-        std::slice::from_raw_parts(s, 1)
+        core::slice::from_raw_parts(s, 1)
     }
 }
 
 /// Converts a reference to A into a slice of length 1 (without copying).
 pub fn ref_slice_mut<A>(s: &mut A) -> &mut [A] {
     unsafe {
-        std::slice::from_raw_parts_mut(s, 1)
+        core::slice::from_raw_parts_mut(s, 1)
     }
 }
 
