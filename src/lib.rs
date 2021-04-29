@@ -1,28 +1,23 @@
 #![no_std]
 
-pub use self::ref_slice_mut as mut_ref_slice;
 pub use self::opt_slice_mut as mut_opt_slice;
+pub use self::ref_slice_mut as mut_ref_slice;
 
 /// Converts a reference to `A` into a slice of length 1 (without copying).
 #[inline]
 pub fn ref_slice<A>(s: &A) -> &[A] {
-    unsafe {
-        core::slice::from_raw_parts(s, 1)
-    }
+    unsafe { core::slice::from_raw_parts(s, 1) }
 }
 
 /// Converts a reference to `A` into a slice of length 1 (without copying).
 #[inline]
 pub fn ref_slice_mut<A>(s: &mut A) -> &mut [A] {
-    unsafe {
-        core::slice::from_raw_parts_mut(s, 1)
-    }
+    unsafe { core::slice::from_raw_parts_mut(s, 1) }
 }
 
 /// Converts a reference to `Option<A>` into a slice of length 0 or 1 (without copying).
 #[inline]
-pub fn opt_slice<A>(opt: &Option<A>) -> &[A]
-{
+pub fn opt_slice<A>(opt: &Option<A>) -> &[A] {
     match *opt {
         Some(ref val) => ref_slice(val),
         None => &[],
@@ -31,8 +26,7 @@ pub fn opt_slice<A>(opt: &Option<A>) -> &[A]
 
 /// Converts a reference to `Option<A>` into a slice of length 0 or 1 (without copying).
 #[inline]
-pub fn opt_slice_mut<A>(opt: &mut Option<A>) -> &mut [A]
-{
+pub fn opt_slice_mut<A>(opt: &mut Option<A>) -> &mut [A] {
     match *opt {
         Some(ref mut val) => mut_ref_slice(val),
         None => &mut [],
@@ -41,10 +35,10 @@ pub fn opt_slice_mut<A>(opt: &mut Option<A>) -> &mut [A]
 
 #[cfg(test)]
 mod tests {
-    use super::ref_slice;
+    use super::mut_opt_slice;
     use super::mut_ref_slice;
     use super::opt_slice;
-    use super::mut_opt_slice;
+    use super::ref_slice;
 
     #[test]
     fn check() {
